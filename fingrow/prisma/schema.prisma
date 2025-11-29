@@ -1,0 +1,138 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String              @id @default(cuid())
+  email             String              @unique
+  password          String
+  name              String
+  monthlyIncome     Float               @default(0)
+  monthlyExpenses   Float               @default(0)
+  language          String              @default("en")
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  
+  transactions      Transaction[]
+  investmentHistory InvestmentHistory[]
+  aiRules           AIRule[]
+  goals             Goal[]
+  notifications     Notification[]
+  chatHistory       ChatMessage[]
+  streaks           Streak[]
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount      Float
+  category    String
+  description String?
+  type        String   // expense, income
+  date        DateTime @default(now())
+  createdAt   DateTime @default(now())
+  
+  @@index([userId])
+}
+
+model InvestmentHistory {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bundleType      String   // safe, balanced, growth
+  amount          Float
+  expectedReturn  Float
+  riskScore       Int
+  duration        Int      // months
+  status          String   @default("active") // active, completed
+  investedAt      DateTime @default(now())
+  maturityDate    DateTime?
+  currentValue    Float?
+  
+  @@index([userId])
+}
+
+model AIRule {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ruleType    String   // roundup, percentage, sweep
+  isActive    Boolean  @default(true)
+  value       Float?   // percentage value or threshold
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([userId])
+}
+
+model Bundle {
+  id              String   @id @default(cuid())
+  name            String
+  type            String   @unique // safe, balanced, growth
+  description     String
+  expectedReturn  Float    // annual percentage
+  riskScore       Int      // 1-10
+  allocation      Json     // {rd: 40, liquid: 60}
+  createdAt       DateTime @default(now())
+}
+
+model Goal {
+  id                String   @id @default(cuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name              String
+  targetAmount      Float
+  currentAmount     Float    @default(0)
+  targetYear        Int
+  requiredMonthly   Float
+  probability       Float    // 0-100
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([userId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String   // alert, nudge, achievement
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  
+  @@index([userId])
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  message   String
+  response  String
+  language  String   @default("en")
+  createdAt DateTime @default(now())
+  
+  @@index([userId])
+}
+
+model Streak {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type          String   // savings, investment
+  currentStreak Int      @default(0)
+  longestStreak Int      @default(0)
+  lastActivity  DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@unique([userId, type])
+  @@index([userId])
+}
