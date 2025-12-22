@@ -1,0 +1,46 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Favicon gradients -->
+    <linearGradient id="faviconYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDE047"/>
+      <stop offset="100%" style="stop-color:#FACC15"/>
+    </linearGradient>
+    
+    <linearGradient id="faviconBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA"/>
+      <stop offset="100%" style="stop-color:#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="faviconOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDBA74"/>
+      <stop offset="100%" style="stop-color:#FB923C"/>
+    </linearGradient>
+    
+    <linearGradient id="faviconGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ADE80"/>
+      <stop offset="100%" style="stop-color:#22C55E"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="white" stroke="#E5E7EB" stroke-width="2"/>
+  
+  <!-- Simplified bars for favicon -->
+  <rect x="20" y="40" width="5" height="14" rx="2.5" fill="url(#faviconYellow)"/>
+  <rect x="28" y="34" width="5" height="20" rx="2.5" fill="url(#faviconBlue)"/>
+  <rect x="36" y="28" width="5" height="26" rx="2.5" fill="url(#faviconOrange)"/>
+  
+  <!-- Unified leaf-arrow element -->
+  <path d="M12 40 Q8 36 12 32 Q16 30 20 32 Q21 36 20 40 Q17 43 12 40 Z" fill="url(#faviconGreen)"/>
+  <path d="M12 40 Q16 36 20 32" stroke="white" stroke-width="1" fill="none" opacity="0.8"/>
+  
+  <!-- Arrow continuation -->
+  <path d="M20 36 Q26 35 32 34 Q38 33 44 32" stroke="url(#faviconGreen)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <polygon points="42,34 44,32 46,34 44,33 43,32" fill="#22C55E"/>
+  
+  <!-- Connection -->
+  <path d="M20 40 Q22 41 43 40" stroke="url(#faviconGreen)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- Small organic detail -->
+  <circle cx="48" cy="34" r="1.5" fill="#4ADE80" opacity="0.6"/>
+</svg>

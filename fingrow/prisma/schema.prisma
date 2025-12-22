@@ -12,8 +12,13 @@ model User {
   email             String              @unique
   password          String
   name              String
+  age               Int?
   monthlyIncome     Float               @default(0)
   monthlyExpenses   Float               @default(0)
+  investmentHorizon Int?                // in years
+  riskScore         Int?                // 0-100
+  riskCategory      String?             // conservative, moderate, aggressive
+  recommendedBundle String?             // safe, balanced, growth
   language          String              @default("en")
   createdAt         DateTime            @default(now())
   updatedAt         DateTime            @updatedAt
@@ -25,6 +30,12 @@ model User {
   notifications     Notification[]
   chatHistory       ChatMessage[]
   streaks           Streak[]
+  
+  // Advanced Features
+  scenarioComparisons ScenarioComparison[]
+  userSegmentation    UserSegmentation?
+  notificationPreferences NotificationPreferences?
+  notificationHistory NotificationHistory[]
 }
 
 model Transaction {
@@ -39,6 +50,9 @@ model Transaction {
   createdAt   DateTime @default(now())
   
   @@index([userId])
+  @@index([userId, date])
+  @@index([userId, type])
+  @@index([date])
 }
 
 model InvestmentHistory {
@@ -56,6 +70,9 @@ model InvestmentHistory {
   currentValue    Float?
   
   @@index([userId])
+  @@index([userId, status])
+  @@index([userId, investedAt])
+  @@index([status])
 }
 
 model AIRule {
@@ -135,4 +152,86 @@ model Streak {
   
   @@unique([userId, type])
   @@index([userId])
+}
+// Advanced Features Models
+
+model ScenarioComparison {
+  id                    String   @id @default(cuid())
+  userId                String
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name                  String
+  baseScenarioData      Json     // InvestmentScenario
+  alternativeScenarioData Json   // InvestmentScenario
+  differencesData       Json     // ScenarioDifferences
+  breakEvenPoint        Int?
+  recommendations       Json     // string[]
+  createdAt             DateTime @default(now())
+  lastModified          DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([userId, createdAt])
+}
+
+model UserSegmentation {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  segmentType       String   // 'salaried' | 'freelance'
+  confidence        Float    // 0-1 score
+  characteristics   Json     // SegmentCharacteristics
+  strategies        Json     // InvestmentStrategy[]
+  customizations    Json     // SegmentCustomizations
+  segmentHistory    Json     // SegmentChange[]
+  lastAnalyzed      DateTime @default(now())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([segmentType])
+  @@index([lastAnalyzed])
+}
+
+model NotificationPreferences {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  channels      Json     // ChannelPreferences
+  frequency     Json     // FrequencySettings
+  quietHours    Json     // QuietHoursConfig
+  categories    Json     // CategoryPreferences
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model NotificationHistory {
+  id                String   @id @default(cuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  notifications     Json     // DeliveredNotification[]
+  engagementMetrics Json     // EngagementMetrics
+  fatigueScore      Float    @default(0) // 0-1 score
+  lastEngagement    DateTime @default(now())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([userId, lastEngagement])
+  @@index([fatigueScore])
+}
+
+model NotificationQueue {
+  id            String   @id @default(cuid())
+  userId        String
+  notificationData Json  // Notification
+  scheduledFor  DateTime
+  attempts      Json     // DeliveryAttempt[]
+  status        String   @default("pending") // 'pending' | 'delivered' | 'failed' | 'cancelled'
+  retryCount    Int      @default(0)
+  maxRetries    Int      @default(3)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([status])
+  @@index([scheduledFor])
+  @@index([userId, status])
 }

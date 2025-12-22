@@ -1,0 +1,119 @@
+<svg width="400" height="180" viewBox="0 0 400 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Enhanced Gradients for bars -->
+    <linearGradient id="yellowBarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FEF08A"/>
+      <stop offset="30%" style="stop-color:#FDE047"/>
+      <stop offset="70%" style="stop-color:#FACC15"/>
+      <stop offset="100%" style="stop-color:#CA8A04"/>
+    </linearGradient>
+    
+    <linearGradient id="blueBarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#93C5FD"/>
+      <stop offset="30%" style="stop-color:#60A5FA"/>
+      <stop offset="70%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1E40AF"/>
+    </linearGradient>
+    
+    <linearGradient id="orangeBarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FED7AA"/>
+      <stop offset="30%" style="stop-color:#FDBA74"/>
+      <stop offset="70%" style="stop-color:#FB923C"/>
+      <stop offset="100%" style="stop-color:#EA580C"/>
+    </linearGradient>
+    
+    <!-- Unified Green Gradient for arrow-leaf -->
+    <linearGradient id="unifiedGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#86EFAC"/>
+      <stop offset="30%" style="stop-color:#4ADE80"/>
+      <stop offset="70%" style="stop-color:#22C55E"/>
+      <stop offset="100%" style="stop-color:#15803D"/>
+    </linearGradient>
+    
+    <!-- Consistent Text Gradient -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#374151"/>
+      <stop offset="50%" style="stop-color:#4B5563"/>
+      <stop offset="100%" style="stop-color:#6B7280"/>
+    </linearGradient>
+    
+    <!-- Shadow filters -->
+    <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="3" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity="0.15"/>
+    </filter>
+    
+    <filter id="textShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="3" stdDeviation="2" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+    
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background subtle circle for depth -->
+  <circle cx="200" cy="90" r="85" fill="url(#unifiedGreen)" opacity="0.03"/>
+  
+  <!-- Chart Bars -->
+  <!-- Yellow Bar (shortest) -->
+  <rect x="120" y="85" width="20" height="40" rx="10" fill="url(#yellowBarGrad)" filter="url(#dropShadow)"/>
+  <ellipse cx="130" cy="85" rx="10" ry="6" fill="#FEF08A"/>
+  <ellipse cx="130" cy="85" rx="4" ry="3" fill="#FFFFFF" opacity="0.7"/>
+  
+  <!-- Blue Bar (medium height) -->
+  <rect x="148" y="60" width="20" height="65" rx="10" fill="url(#blueBarGrad)" filter="url(#dropShadow)"/>
+  <ellipse cx="158" cy="60" rx="10" ry="6" fill="#93C5FD"/>
+  <ellipse cx="158" cy="60" rx="4" ry="3" fill="#FFFFFF" opacity="0.7"/>
+  
+  <!-- Orange Bar (tallest) -->
+  <rect x="176" y="35" width="20" height="90" rx="10" fill="url(#orangeBarGrad)" filter="url(#dropShadow)"/>
+  <ellipse cx="186" cy="35" rx="10" ry="6" fill="#FED7AA"/>
+  <ellipse cx="186" cy="35" rx="4" ry="3" fill="#FFFFFF" opacity="0.7"/>
+  
+  <!-- Unified Arrow-Leaf Element -->
+  <!-- Main curved arrow body that transforms into leaf -->
+  <path d="M55 90 Q30 60 55 40 Q80 25 105 40 Q115 60 105 85 Q85 105 55 90 Z" fill="url(#unifiedGreen)" filter="url(#dropShadow)"/>
+  
+  <!-- Leaf veining that flows into arrow -->
+  <path d="M55 90 Q80 60 105 40" stroke="white" stroke-width="3" fill="none" opacity="0.9"/>
+  <path d="M62 85 Q75 70 88 60" stroke="white" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M65 87 Q78 72 91 62" stroke="white" stroke-width="1.5" fill="none" opacity="0.6"/>
+  
+  <!-- Arrow continuation from leaf -->
+  <path d="M105 65 Q140 55 175 50 Q210 45 245 40 Q280 35 315 25" stroke="url(#unifiedGreen)" stroke-width="14" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  
+  <!-- Arrow head -->
+  <path d="M305 30 L315 25 L320 35 L315 25 L310 20" stroke="#22C55E" stroke-width="10" fill="#22C55E" stroke-linejoin="round" filter="url(#dropShadow)"/>
+  <polygon points="305,30 315,25 320,35 315,32 310,27" fill="#4ADE80"/>
+  
+  <!-- Connecting flow from leaf to bars -->
+  <path d="M105 90 Q115 95 205 90" stroke="url(#unifiedGreen)" stroke-width="12" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  
+  <!-- Additional leaf details integrated with arrow -->
+  <path d="M68 82 Q81 67 94 57" stroke="white" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <path d="M70 80 Q83 65 96 55" stroke="white" stroke-width="1" fill="none" opacity="0.4"/>
+  
+  <!-- Small leaves along the arrow path -->
+  <ellipse cx="220" cy="47" rx="8" ry="4" fill="url(#unifiedGreen)" opacity="0.6" transform="rotate(-15 220 47)"/>
+  <path d="M215 47 Q220 44 225 47" stroke="white" stroke-width="1" fill="none" opacity="0.5"/>
+  
+  <ellipse cx="260" cy="37" rx="6" ry="3" fill="url(#unifiedGreen)" opacity="0.5" transform="rotate(-10 260 37)"/>
+  <path d="M257 37 Q260 35 263 37" stroke="white" stroke-width="0.8" fill="none" opacity="0.4"/>
+  
+  <!-- FinGrow Text with consistent color -->
+  <text x="100" y="160" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="48" font-weight="800" fill="url(#textGrad)" filter="url(#textShadow)">FinGrow</text>
+  
+  <!-- Subtle highlight effects on bars -->
+  <ellipse cx="130" cy="95" rx="3" ry="15" fill="#FFFFFF" opacity="0.4"/>
+  <ellipse cx="158" cy="80" rx="3" ry="22" fill="#FFFFFF" opacity="0.4"/>
+  <ellipse cx="186" cy="65" rx="3" ry="30" fill="#FFFFFF" opacity="0.4"/>
+  
+  <!-- Organic growth particles -->
+  <circle cx="330" cy="30" r="3" fill="#4ADE80" opacity="0.6"/>
+  <circle cx="335" cy="35" r="2" fill="#22C55E" opacity="0.5"/>
+  <circle cx="325" cy="40" r="1.5" fill="#16A34A" opacity="0.4"/>
+</svg>

@@ -24,13 +24,20 @@ export async function GET(req: NextRequest) {
       where: { userId: payload.userId }
     });
 
-    const analyzer = new SpendingAnalyzer(transactions);
+    // Convert null descriptions to undefined and cast type for compatibility
+    const compatibleTransactions = transactions.map(t => ({
+      ...t,
+      description: t.description ?? undefined,
+      type: t.type as 'expense' | 'income'
+    }));
+
+    const analyzer = new SpendingAnalyzer(compatibleTransactions);
     const analysis = analyzer.analyze();
     const heatmap = analyzer.getSpendingHeatmap();
 
     const predictor = new LiquidityPredictor(
       user?.monthlyIncome || 0,
-      transactions
+      compatibleTransactions
     );
     const predictions = predictor.predict(3);
     const currentSurplus = predictor.getCurrentSurplus();

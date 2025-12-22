@@ -1,0 +1,50 @@
+<svg width="300" height="120" viewBox="0 0 300 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Modern Gradient Palette -->
+    <linearGradient id="modernBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA"/>
+      <stop offset="100%" style="stop-color:#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="modernPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A78BFA"/>
+      <stop offset="100%" style="stop-color:#8B5CF6"/>
+    </linearGradient>
+    
+    <linearGradient id="modernPink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F472B6"/>
+      <stop offset="100%" style="stop-color:#EC4899"/>
+    </linearGradient>
+    
+    <linearGradient id="modernGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ADE80"/>
+      <stop offset="100%" style="stop-color:#22C55E"/>
+    </linearGradient>
+    
+    <!-- Clean shadow -->
+    <filter id="cleanShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+  
+  <!-- Modern minimalist bars -->
+  <rect x="80" y="65" width="16" height="30" rx="8" fill="url(#modernBlue)" filter="url(#cleanShadow)"/>
+  <rect x="104" y="50" width="16" height="45" rx="8" fill="url(#modernPurple)" filter="url(#cleanShadow)"/>
+  <rect x="128" y="35" width="16" height="60" rx="8" fill="url(#modernPink)" filter="url(#cleanShadow)"/>
+  
+  <!-- Modern arrow -->
+  <path d="M152 65 Q175 50 198 35 Q221 20 244 10" stroke="url(#modernGreen)" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <polygon points="236,15 244,10 248,18 244,16 240,12" fill="#22C55E"/>
+  
+  <!-- Simplified leaf icon -->
+  <circle cx="50" cy="65" r="20" fill="url(#modernGreen)" filter="url(#cleanShadow)"/>
+  <path d="M35 65 Q50 50 65 65" stroke="white" stroke-width="3" fill="none" opacity="0.8"/>
+  
+  <!-- Connection line -->
+  <path d="M70 65 Q75 67 152 65" stroke="url(#modernGreen)" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Modern highlights -->
+  <ellipse cx="88" cy="70" rx="2" ry="10" fill="#FFFFFF" opacity="0.5"/>
+  <ellipse cx="112" cy="62" rx="2" ry="15" fill="#FFFFFF" opacity="0.5"/>
+  <ellipse cx="136" cy="55" rx="2" ry="20" fill="#FFFFFF" opacity="0.5"/>
+</svg>

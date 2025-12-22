@@ -1,0 +1,125 @@
+<svg width="450" height="200" viewBox="0 0 450 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Enhanced Gradients for bars -->
+    <linearGradient id="yellowBarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FEF08A"/>
+      <stop offset="30%" style="stop-color:#FDE047"/>
+      <stop offset="70%" style="stop-color:#FACC15"/>
+      <stop offset="100%" style="stop-color:#CA8A04"/>
+    </linearGradient>
+    
+    <linearGradient id="blueBarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#93C5FD"/>
+      <stop offset="30%" style="stop-color:#60A5FA"/>
+      <stop offset="70%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1E40AF"/>
+    </linearGradient>
+    
+    <linearGradient id="orangeBarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FED7AA"/>
+      <stop offset="30%" style="stop-color:#FDBA74"/>
+      <stop offset="70%" style="stop-color:#FB923C"/>
+      <stop offset="100%" style="stop-color:#EA580C"/>
+    </linearGradient>
+    
+    <!-- Unified Green Gradient for integrated arrow-leaf -->
+    <linearGradient id="unifiedGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#86EFAC"/>
+      <stop offset="30%" style="stop-color:#4ADE80"/>
+      <stop offset="70%" style="stop-color:#22C55E"/>
+      <stop offset="100%" style="stop-color:#15803D"/>
+    </linearGradient>
+    
+    <!-- Consistent Text Gradient -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#374151"/>
+      <stop offset="50%" style="stop-color:#4B5563"/>
+      <stop offset="100%" style="stop-color:#6B7280"/>
+    </linearGradient>
+    
+    <!-- Shadow and glow filters -->
+    <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="3" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity="0.15"/>
+    </filter>
+    
+    <filter id="textShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="3" stdDeviation="2" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+    
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background subtle circle for depth -->
+  <circle cx="225" cy="100" r="95" fill="url(#unifiedGreen)" opacity="0.03"/>
+  
+  <!-- Chart Bars with better spacing -->
+  <!-- Yellow Bar (shortest) -->
+  <rect x="130" y="95" width="22" height="45" rx="11" fill="url(#yellowBarGrad)" filter="url(#dropShadow)"/>
+  <ellipse cx="141" cy="95" rx="11" ry="7" fill="#FEF08A"/>
+  <ellipse cx="141" cy="95" rx="4" ry="3" fill="#FFFFFF" opacity="0.7"/>
+  
+  <!-- Blue Bar (medium height) -->
+  <rect x="160" y="70" width="22" height="70" rx="11" fill="url(#blueBarGrad)" filter="url(#dropShadow)"/>
+  <ellipse cx="171" cy="70" rx="11" ry="7" fill="#93C5FD"/>
+  <ellipse cx="171" cy="70" rx="4" ry="3" fill="#FFFFFF" opacity="0.7"/>
+  
+  <!-- Orange Bar (tallest) -->
+  <rect x="190" y="45" width="22" height="95" rx="11" fill="url(#orangeBarGrad)" filter="url(#dropShadow)"/>
+  <ellipse cx="201" cy="45" rx="11" ry="7" fill="#FED7AA"/>
+  <ellipse cx="201" cy="45" rx="4" ry="3" fill="#FFFFFF" opacity="0.7"/>
+  
+  <!-- Unified Arrow-Leaf Element - Integrated Design -->
+  <!-- Main leaf shape that flows into arrow -->
+  <path d="M60 100 Q35 70 60 50 Q85 35 110 50 Q120 70 110 95 Q90 115 60 100 Z" fill="url(#unifiedGreen)" filter="url(#dropShadow)"/>
+  
+  <!-- Leaf veining that transitions to arrow flow -->
+  <path d="M60 100 Q85 70 110 50" stroke="white" stroke-width="3.5" fill="none" opacity="0.9"/>
+  <path d="M67 95 Q80 80 93 70" stroke="white" stroke-width="2.5" fill="none" opacity="0.7"/>
+  <path d="M70 97 Q83 82 96 72" stroke="white" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M73 92 Q86 77 99 67" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <path d="M75 90 Q88 75 101 65" stroke="white" stroke-width="1.2" fill="none" opacity="0.4"/>
+  
+  <!-- Seamless arrow continuation from leaf -->
+  <path d="M110 75 Q150 65 190 60 Q230 55 270 50 Q310 45 350 35" stroke="url(#unifiedGreen)" stroke-width="16" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  
+  <!-- Arrow head with organic feel -->
+  <path d="M340 40 L350 35 L355 45 L350 35 L345 30" stroke="#22C55E" stroke-width="12" fill="#22C55E" stroke-linejoin="round" filter="url(#dropShadow)"/>
+  <polygon points="340,40 350,35 355,45 350,42 345,37" fill="#4ADE80"/>
+  
+  <!-- Organic connecting flow from leaf to bars -->
+  <path d="M110 100 Q120 105 220 100" stroke="url(#unifiedGreen)" stroke-width="14" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  
+  <!-- Small organic leaves growing along the arrow path -->
+  <ellipse cx="240" cy="57" rx="10" ry="5" fill="url(#unifiedGreen)" opacity="0.7" transform="rotate(-12 240 57)"/>
+  <path d="M234 57 Q240 53 246 57" stroke="white" stroke-width="1.2" fill="none" opacity="0.6"/>
+  
+  <ellipse cx="290" cy="47" rx="8" ry="4" fill="url(#unifiedGreen)" opacity="0.6" transform="rotate(-8 290 47)"/>
+  <path d="M286 47 Q290 45 294 47" stroke="white" stroke-width="1" fill="none" opacity="0.5"/>
+  
+  <ellipse cx="320" cy="42" rx="6" ry="3" fill="url(#unifiedGreen)" opacity="0.5" transform="rotate(-5 320 42)"/>
+  <path d="M318 42 Q320 41 322 42" stroke="white" stroke-width="0.8" fill="none" opacity="0.4"/>
+  
+  <!-- FinGrow Text with consistent styling -->
+  <text x="110" y="175" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="52" font-weight="800" fill="url(#textGrad)" filter="url(#textShadow)">FinGrow</text>
+  
+  <!-- Subtle highlight effects on bars -->
+  <ellipse cx="141" cy="105" rx="3.5" ry="18" fill="#FFFFFF" opacity="0.4"/>
+  <ellipse cx="171" cy="90" rx="3.5" ry="25" fill="#FFFFFF" opacity="0.4"/>
+  <ellipse cx="201" cy="75" rx="3.5" ry="32" fill="#FFFFFF" opacity="0.4"/>
+  
+  <!-- Organic growth particles at arrow tip -->
+  <circle cx="365" cy="40" r="4" fill="#4ADE80" opacity="0.6"/>
+  <circle cx="370" cy="46" r="3" fill="#22C55E" opacity="0.5"/>
+  <circle cx="360" cy="52" r="2.5" fill="#16A34A" opacity="0.4"/>
+  <circle cx="375" cy="50" r="2" fill="#15803D" opacity="0.3"/>
+  
+  <!-- Subtle connecting organic lines -->
+  <path d="M365 40 Q367 43 370 46" stroke="#4ADE80" stroke-width="1" opacity="0.3" fill="none"/>
+  <path d="M370 46 Q365 49 360 52" stroke="#22C55E" stroke-width="0.8" opacity="0.2" fill="none"/>
+</svg>

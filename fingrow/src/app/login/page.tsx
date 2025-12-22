@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import gsap from 'gsap';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
@@ -123,8 +124,14 @@ export default function LoginPage() {
         <Card className="login-card p-8 shadow-2xl">
           {/* Logo */}
           <div className="flex justify-center mb-6">
-            <div className="login-logo w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-              <Sparkles className="w-8 h-8 text-white" />
+            <div className="login-logo relative w-32 h-20">
+              <Image
+                src="/images/fingrow-logo-colorful.svg"
+                alt="FinGrow Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
           </div>
 

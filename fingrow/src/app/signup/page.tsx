@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import gsap from 'gsap';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
@@ -17,8 +18,10 @@ export default function SignupPage() {
     name: '',
     email: '',
     password: '',
+    age: '',
     monthlyIncome: '',
     monthlyExpenses: '',
+    investmentHorizon: '',
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -59,8 +62,14 @@ export default function SignupPage() {
     try {
       console.log('Signup: attempting with', formData.email);
       // Validate inputs
+      const age = parseInt(formData.age);
       const income = parseFloat(formData.monthlyIncome);
       const expenses = parseFloat(formData.monthlyExpenses);
+      const investmentHorizon = parseInt(formData.investmentHorizon);
+
+      if (isNaN(age) || age < 18 || age > 100) {
+        throw new Error('Please enter a valid age (18-100)');
+      }
 
       if (isNaN(income) || income <= 0) {
         throw new Error('Please enter a valid monthly income');
@@ -74,6 +83,10 @@ export default function SignupPage() {
         throw new Error('Monthly expenses should be less than monthly income');
       }
 
+      if (isNaN(investmentHorizon) || investmentHorizon < 1 || investmentHorizon > 50) {
+        throw new Error('Please enter a valid investment horizon (1-50 years)');
+      }
+
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -81,8 +94,10 @@ export default function SignupPage() {
           name: formData.name,
           email: formData.email,
           password: formData.password,
+          age: age,
           monthlyIncome: income,
           monthlyExpenses: expenses,
+          investmentHorizon: investmentHorizon,
         }),
       });
 
@@ -129,8 +144,14 @@ export default function SignupPage() {
           <Card className="signup-card lg:col-span-3 p-8 shadow-2xl">
             {/* Logo */}
             <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
-                <Sparkles className="w-8 h-8 text-white" />
+              <div className="relative w-24 h-16">
+                <Image
+                  src="/images/fingrow-logo.svg"
+                  alt="FinGrow Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
             </div>
 
@@ -165,14 +186,27 @@ export default function SignupPage() {
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
               
-              <Input
-                label="Email"
-                type="email"
-                required
-                placeholder="you@example.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              />
+              <div className="grid md:grid-cols-2 gap-4">
+                <Input
+                  label="Email"
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                />
+                
+                <Input
+                  label="Age"
+                  type="number"
+                  required
+                  placeholder="25"
+                  min="18"
+                  max="100"
+                  value={formData.age}
+                  onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                />
+              </div>
               
               <Input
                 label="Password"
@@ -202,6 +236,18 @@ export default function SignupPage() {
                   onChange={(e) => setFormData({ ...formData, monthlyExpenses: e.target.value })}
                 />
               </div>
+
+              <Input
+                label="Investment Horizon (Years)"
+                type="number"
+                required
+                placeholder="10"
+                min="1"
+                max="50"
+                value={formData.investmentHorizon}
+                onChange={(e) => setFormData({ ...formData, investmentHorizon: e.target.value })}
+                helperText="How long do you plan to invest? (1-50 years)"
+              />
 
               <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? (

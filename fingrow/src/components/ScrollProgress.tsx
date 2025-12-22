@@ -30,7 +30,7 @@ export default function ScrollProgress() {
       <div
         ref={progressRef}
         className="h-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 origin-left"
-        style={{ scaleX: 0 }}
+        style={{ transform: 'scaleX(0)' }}
       />
     </div>
   );

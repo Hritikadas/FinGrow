@@ -1,0 +1,62 @@
+<svg width="200" height="120" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 3D Cylindrical Bar Gradients -->
+    <linearGradient id="yellowBarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDE047"/>
+      <stop offset="50%" style="stop-color:#FACC15"/>
+      <stop offset="100%" style="stop-color:#EAB308"/>
+    </linearGradient>
+    <linearGradient id="blueBarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA"/>
+      <stop offset="50%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1D4ED8"/>
+    </linearGradient>
+    
+    <!-- Green Arrow and Leaf Gradients -->
+    <linearGradient id="greenArrowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ADE80"/>
+      <stop offset="50%" style="stop-color:#22C55E"/>
+      <stop offset="100%" style="stop-color:#16A34A"/>
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22C55E"/>
+      <stop offset="100%" style="stop-color:#15803D"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Chart Bars (3D cylindrical) -->
+  <!-- First Yellow Bar (shortest) -->
+  <rect x="60" y="70" width="12" height="25" rx="6" fill="url(#yellowBarGrad)"/>
+  <ellipse cx="66" cy="70" rx="6" ry="3" fill="#FDE047"/>
+  
+  <!-- Blue Bar (medium height) -->
+  <rect x="78" y="55" width="12" height="40" rx="6" fill="url(#blueBarGrad)"/>
+  <ellipse cx="84" cy="55" rx="6" ry="3" fill="#60A5FA"/>
+  
+  <!-- Second Yellow Bar (tallest) -->
+  <rect x="96" y="35" width="12" height="60" rx="6" fill="url(#yellowBarGrad)"/>
+  <ellipse cx="102" cy="35" rx="6" ry="3" fill="#FDE047"/>
+  
+  <!-- Green Curved Arrow -->
+  <path d="M115 70 Q135 55 155 40 Q175 25 195 15" stroke="url(#greenArrowGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- Arrow Head -->
+  <path d="M185 20 L195 15 L200 25 L195 15 L190 10" stroke="#22C55E" stroke-width="6" fill="#22C55E" stroke-linejoin="round"/>
+  <polygon points="185,20 195,15 200,25 195,22 190,18" fill="#22C55E"/>
+  
+  <!-- Green Leaf with white veining -->
+  <path d="M25 75 Q15 60 25 45 Q35 35 50 45 Q55 60 50 70 Q40 80 25 75 Z" fill="url(#leafGrad)"/>
+  
+  <!-- Leaf veining (white lines) -->
+  <path d="M25 75 Q37 60 50 45" stroke="white" stroke-width="1.5" fill="none" opacity="0.8"/>
+  <path d="M30 70 Q35 65 40 60" stroke="white" stroke-width="1" fill="none" opacity="0.6"/>
+  <path d="M32 72 Q37 67 42 62" stroke="white" stroke-width="0.8" fill="none" opacity="0.5"/>
+  
+  <!-- Curved base line connecting leaf to bars -->
+  <path d="M50 75 Q75 80 115 75" stroke="url(#greenArrowGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Highlight effects on bars -->
+  <ellipse cx="66" cy="75" rx="1.5" ry="8" fill="#FEF3C7" opacity="0.7"/>
+  <ellipse cx="84" cy="65" rx="1.5" ry="12" fill="#DBEAFE" opacity="0.7"/>
+  <ellipse cx="102" cy="50" rx="1.5" ry="18" fill="#FEF3C7" opacity="0.7"/>
+</svg>

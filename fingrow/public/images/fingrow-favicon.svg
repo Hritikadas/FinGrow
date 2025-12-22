@@ -1,0 +1,43 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Favicon gradients -->
+    <linearGradient id="faviconBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA"/>
+      <stop offset="100%" style="stop-color:#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="faviconPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A78BFA"/>
+      <stop offset="100%" style="stop-color:#8B5CF6"/>
+    </linearGradient>
+    
+    <linearGradient id="faviconPink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F472B6"/>
+      <stop offset="100%" style="stop-color:#EC4899"/>
+    </linearGradient>
+    
+    <linearGradient id="faviconGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ADE80"/>
+      <stop offset="100%" style="stop-color:#22C55E"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="white" stroke="#E5E7EB" stroke-width="2"/>
+  
+  <!-- Simplified bars for favicon -->
+  <rect x="18" y="38" width="4" height="12" rx="2" fill="url(#faviconBlue)"/>
+  <rect x="25" y="32" width="4" height="18" rx="2" fill="url(#faviconPurple)"/>
+  <rect x="32" y="26" width="4" height="24" rx="2" fill="url(#faviconPink)"/>
+  
+  <!-- Simplified arrow -->
+  <path d="M38 38 Q42 34 46 30" stroke="url(#faviconGreen)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <polygon points="44,32 46,30 48,32 46,31 45,30" fill="#22C55E"/>
+  
+  <!-- Simplified leaf -->
+  <circle cx="12" cy="38" r="6" fill="url(#faviconGreen)"/>
+  <path d="M8 38 Q12 34 16 38" stroke="white" stroke-width="1.5" fill="none" opacity="0.8"/>
+  
+  <!-- Connection -->
+  <path d="M18 38 Q20 39 38 38" stroke="url(#faviconGreen)" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

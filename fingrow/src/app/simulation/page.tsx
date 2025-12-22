@@ -13,18 +13,75 @@ export default function SimulationPage() {
   const [formData, setFormData] = useState({
     monthlyAmount: '1000',
     duration: '12',
-    bundleType: 'balanced' as 'safe' | 'balanced' | 'growth'
+    bundleType: 'balanced' as 'safe' | 'balanced' | 'growth',
+    sendEmail: false
   });
   const [result, setResult] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSimulate = () => {
-    const engine = new SimulationEngine(
-      parseFloat(formData.monthlyAmount),
-      parseInt(formData.duration),
-      formData.bundleType
-    );
-    const simulationResult = engine.simulate();
-    setResult(simulationResult);
+  const handleSimulate = async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      // Try API endpoint first (saves to database and can send email)
+      const response = await fetch('/api/simulation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          monthlyAmount: parseFloat(formData.monthlyAmount),
+          duration: parseInt(formData.duration),
+          bundleType: formData.bundleType,
+          sendEmail: formData.sendEmail,
+        }),
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setResult(data.simulation);
+        
+        if (formData.sendEmail && data.emailSent) {
+          // Show success message for email
+          setError(null);
+        } else if (formData.sendEmail && !data.emailSent) {
+          setError('Simulation completed but email could not be sent. Check your email configuration.');
+        }
+      } else {
+        // Fallback to client-side simulation if API fails
+        console.warn('API simulation failed, falling back to client-side');
+        const engine = new SimulationEngine(
+          parseFloat(formData.monthlyAmount),
+          parseInt(formData.duration),
+          formData.bundleType
+        );
+        const simulationResult = engine.simulate();
+        setResult(simulationResult);
+        
+        if (formData.sendEmail) {
+          setError('Simulation completed but could not be saved or emailed. Using client-side calculation.');
+        }
+      }
+    } catch (err) {
+      console.error('Simulation error:', err);
+      
+      // Fallback to client-side simulation
+      const engine = new SimulationEngine(
+        parseFloat(formData.monthlyAmount),
+        parseInt(formData.duration),
+        formData.bundleType
+      );
+      const simulationResult = engine.simulate();
+      setResult(simulationResult);
+      
+      if (formData.sendEmail) {
+        setError('Simulation completed but could not be saved or emailed. Using client-side calculation.');
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -77,8 +134,31 @@ export default function SimulationPage() {
                 </select>
               </div>
 
-              <Button onClick={handleSimulate} className="w-full">
-                Run Simulation
+              <div className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  id="sendEmail"
+                  checked={formData.sendEmail}
+                  onChange={(e) => setFormData({ ...formData, sendEmail: e.target.checked })}
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                />
+                <label htmlFor="sendEmail" className="text-sm font-medium text-gray-700">
+                  Email me the simulation results
+                </label>
+              </div>
+
+              {error && (
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                  <p className="text-sm text-yellow-800">{error}</p>
+                </div>
+              )}
+
+              <Button 
+                onClick={handleSimulate} 
+                className="w-full"
+                disabled={loading}
+              >
+                {loading ? 'Running Simulation...' : 'Run Simulation'}
               </Button>
             </div>
           </Card>

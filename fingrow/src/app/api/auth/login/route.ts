@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { verifyPassword, generateToken } from '@/lib/auth';
+import { logger } from '@/lib/logger';
+import { handleApiError, ValidationError, AuthenticationError } from '@/lib/errorHandling';
 import { z } from 'zod';
 
 const loginSchema = z.object({
@@ -9,42 +11,66 @@ const loginSchema = z.object({
 });
 
 export async function POST(req: NextRequest) {
+  const correlationId = logger.generateCorrelationId();
+  const startTime = Date.now();
+  const context = { correlationId, action: 'user-login' };
+  
   try {
+    logger.info('User login attempt started', context);
+    
     const body = await req.json();
     
     const validationResult = loginSchema.safeParse(body);
     
     if (!validationResult.success) {
       const errors = validationResult.error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ');
-      return NextResponse.json(
-        { error: `Validation failed: ${errors}` },
-        { status: 400 }
-      );
+      throw new ValidationError(`Validation failed: ${errors}`, correlationId);
     }
 
     const data = validationResult.data;
+    
+    logger.info('Login validation passed', {
+      ...context,
+      metadata: { email: data.email },
+    });
 
     const user = await prisma.user.findUnique({
       where: { email: data.email },
     });
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Invalid email or password' },
-        { status: 401 }
-      );
+      logger.warn('Login attempt with non-existent email', {
+        ...context,
+        metadata: { email: data.email },
+      });
+      
+      throw new AuthenticationError('Invalid email or password', correlationId);
     }
 
     const isValid = await verifyPassword(data.password, user.password);
 
     if (!isValid) {
-      return NextResponse.json(
-        { error: 'Invalid email or password' },
-        { status: 401 }
-      );
+      logger.warn('Login attempt with invalid password', {
+        ...context,
+        userId: user.id,
+        metadata: { email: data.email },
+      });
+      
+      throw new AuthenticationError('Invalid email or password', correlationId);
     }
 
     const token = generateToken(user.id);
+    const duration = Date.now() - startTime;
+
+    logger.info('User login completed successfully', {
+      ...context,
+      userId: user.id,
+      metadata: { 
+        email: user.email, 
+        name: user.name,
+        duration: `${duration}ms`,
+      },
+    });
 
     const response = NextResponse.json({
       user: {
@@ -73,21 +99,17 @@ export async function POST(req: NextRequest) {
       path: '/',
     });
 
-    console.log('Login successful, cookie set for user:', user.email);
-    console.log('Cookie details:', {
-      tokenLength: token.length,
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
-    });
-
+    logger.apiLog('POST', '/api/auth/login', context, 200, duration);
     return response;
+    
   } catch (error: any) {
-    console.error('Login error:', error);
-    return NextResponse.json(
-      { error: error.message || 'An error occurred during login' },
-      { status: 500 }
-    );
+    const duration = Date.now() - startTime;
+    const errorResponse = handleApiError(error, correlationId);
+    
+    logger.apiLog('POST', '/api/auth/login', context, errorResponse.statusCode, duration);
+    
+    return NextResponse.json(errorResponse, { 
+      status: errorResponse.statusCode 
+    });
   }
 }

@@ -1,0 +1,134 @@
+<svg width="450" height="200" viewBox="0 0 450 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Enhanced Gradients with more depth and modern colors -->
+    <linearGradient id="yellowBarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FEF08A"/>
+      <stop offset="30%" style="stop-color:#FDE047"/>
+      <stop offset="70%" style="stop-color:#FACC15"/>
+      <stop offset="100%" style="stop-color:#CA8A04"/>
+    </linearGradient>
+    
+    <linearGradient id="blueBarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#93C5FD"/>
+      <stop offset="30%" style="stop-color:#60A5FA"/>
+      <stop offset="70%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1E40AF"/>
+    </linearGradient>
+    
+    <linearGradient id="purpleBarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C4B5FD"/>
+      <stop offset="30%" style="stop-color:#A78BFA"/>
+      <stop offset="70%" style="stop-color:#8B5CF6"/>
+      <stop offset="100%" style="stop-color:#6D28D9"/>
+    </linearGradient>
+    
+    <!-- Enhanced Green Gradients -->
+    <linearGradient id="greenArrowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#86EFAC"/>
+      <stop offset="30%" style="stop-color:#4ADE80"/>
+      <stop offset="70%" style="stop-color:#22C55E"/>
+      <stop offset="100%" style="stop-color:#15803D"/>
+    </linearGradient>
+    
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ADE80"/>
+      <stop offset="50%" style="stop-color:#22C55E"/>
+      <stop offset="100%" style="stop-color:#166534"/>
+    </linearGradient>
+    
+    <!-- Modern Text Gradient -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1F2937"/>
+      <stop offset="50%" style="stop-color:#374151"/>
+      <stop offset="100%" style="stop-color:#4B5563"/>
+    </linearGradient>
+    
+    <!-- Accent Text Gradient for "Fin" -->
+    <linearGradient id="finGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="50%" style="stop-color:#8B5CF6"/>
+      <stop offset="100%" style="stop-color:#EC4899"/>
+    </linearGradient>
+    
+    <!-- Shadow and glow filters -->
+    <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="3" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity="0.15"/>
+    </filter>
+    
+    <filter id="textShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="3" stdDeviation="2" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+    
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background subtle circle for depth -->
+  <circle cx="225" cy="100" r="95" fill="url(#leafGrad)" opacity="0.03"/>
+  
+  <!-- Enhanced Chart Bars with better spacing and proportions -->
+  <!-- First Yellow Bar (shortest) -->
+  <rect x="120" y="85" width="20" height="40" rx="10" fill="url(#yellowBarGrad)" filter="url(#dropShadow)"/>
+  <ellipse cx="130" cy="85" rx="10" ry="6" fill="#FEF08A"/>
+  <ellipse cx="130" cy="85" rx="4" ry="3" fill="#FFFFFF" opacity="0.7"/>
+  
+  <!-- Blue Bar (medium height) -->
+  <rect x="148" y="60" width="20" height="65" rx="10" fill="url(#blueBarGrad)" filter="url(#dropShadow)"/>
+  <ellipse cx="158" cy="60" rx="10" ry="6" fill="#93C5FD"/>
+  <ellipse cx="158" cy="60" rx="4" ry="3" fill="#FFFFFF" opacity="0.7"/>
+  
+  <!-- Purple Bar (tallest) -->
+  <rect x="176" y="35" width="20" height="90" rx="10" fill="url(#purpleBarGrad)" filter="url(#dropShadow)"/>
+  <ellipse cx="186" cy="35" rx="10" ry="6" fill="#C4B5FD"/>
+  <ellipse cx="186" cy="35" rx="4" ry="3" fill="#FFFFFF" opacity="0.7"/>
+  
+  <!-- Enhanced Green Curved Arrow with smoother curve -->
+  <path d="M205 85 Q240 60 275 45 Q310 30 345 20" stroke="url(#greenArrowGrad)" stroke-width="14" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  
+  <!-- Enhanced Arrow Head with better proportions -->
+  <path d="M335 25 L345 20 L350 30 L345 20 L340 15" stroke="#22C55E" stroke-width="10" fill="#22C55E" stroke-linejoin="round" filter="url(#dropShadow)"/>
+  <polygon points="335,25 345,20 350,30 345,27 340,22" fill="#4ADE80"/>
+  
+  <!-- Enhanced Green Leaf with more organic shape -->
+  <path d="M55 90 Q30 60 55 40 Q80 25 105 40 Q115 60 105 85 Q85 105 55 90 Z" fill="url(#leafGrad)" filter="url(#dropShadow)"/>
+  
+  <!-- Enhanced Leaf veining with more detail -->
+  <path d="M55 90 Q80 60 105 40" stroke="white" stroke-width="3" fill="none" opacity="0.9"/>
+  <path d="M62 85 Q75 70 88 60" stroke="white" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M65 87 Q78 72 91 62" stroke="white" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M68 82 Q81 67 94 57" stroke="white" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <path d="M70 80 Q83 65 96 55" stroke="white" stroke-width="1" fill="none" opacity="0.4"/>
+  
+  <!-- Enhanced curved base line connecting elements -->
+  <path d="M105 90 Q115 95 205 90" stroke="url(#greenArrowGrad)" stroke-width="12" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  
+  <!-- Enhanced FinGrow Text with modern typography -->
+  <text x="100" y="170" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="48" font-weight="800" fill="url(#finGrad)" filter="url(#textShadow)">Fin</text>
+  <text x="180" y="170" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="48" font-weight="800" fill="url(#textGrad)" filter="url(#textShadow)">Grow</text>
+  
+  <!-- Subtle highlight effects on bars -->
+  <ellipse cx="130" cy="95" rx="3" ry="15" fill="#FFFFFF" opacity="0.4"/>
+  <ellipse cx="158" cy="80" rx="3" ry="22" fill="#FFFFFF" opacity="0.4"/>
+  <ellipse cx="186" cy="65" rx="3" ry="30" fill="#FFFFFF" opacity="0.4"/>
+  
+  <!-- Modern decorative elements - AI/Tech inspired -->
+  <circle cx="360" cy="30" r="4" fill="#4ADE80" opacity="0.6"/>
+  <circle cx="366" cy="36" r="2.5" fill="#22C55E" opacity="0.5"/>
+  <circle cx="354" cy="42" r="2" fill="#16A34A" opacity="0.4"/>
+  
+  <!-- Tech pattern dots -->
+  <circle cx="80" cy="30" r="2" fill="#3B82F6" opacity="0.4"/>
+  <circle cx="86" cy="25" r="1.5" fill="#8B5CF6" opacity="0.3"/>
+  <circle cx="92" cy="30" r="1.8" fill="#22C55E" opacity="0.3"/>
+  <circle cx="98" cy="35" r="1.2" fill="#EC4899" opacity="0.3"/>
+  
+  <!-- Subtle connecting lines for tech feel -->
+  <line x1="80" y1="30" x2="86" y2="25" stroke="#3B82F6" stroke-width="0.5" opacity="0.2"/>
+  <line x1="86" y1="25" x2="92" y2="30" stroke="#8B5CF6" stroke-width="0.5" opacity="0.2"/>
+  <line x1="92" y1="30" x2="98" y2="35" stroke="#22C55E" stroke-width="0.5" opacity="0.2"/>
+</svg>
