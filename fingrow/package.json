@@ -18,7 +18,6 @@
     "db:migrate": "prisma migrate dev",
     "db:generate": "prisma generate",
     "postinstall": "prisma generate",
-    "vercel-build": "prisma generate && prisma db push && next build",
     "health-check": "curl -f http://localhost:3000/api/admin/health || exit 1",
     "security-audit": "npm audit --audit-level=high",
     "performance-test": "lighthouse http://localhost:3000 --output=json --output-path=./lighthouse-report.json",

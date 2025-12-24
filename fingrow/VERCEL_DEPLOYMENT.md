@@ -86,26 +86,68 @@ The deployment will automatically:
 ### Common Issues
 
 1. **Build Failures**
-   - Check environment variables are set correctly
+   - Check environment variables are set correctly in Vercel dashboard
    - Ensure DATABASE_URL is accessible from Vercel
+   - Verify all required environment variables are present
 
-2. **Database Connection Issues**
+2. **Prisma Client Issues**
+   - Error: "Prisma Client is not configured"
+   - Solution: Ensure `prisma generate` runs during build
+   - Check that `postinstall` script includes `prisma generate`
+
+3. **Database Connection Issues**
    - Verify Neon database allows external connections
-   - Check connection string format
+   - Check connection string format includes `?sslmode=require`
+   - Test connection string locally first
 
-3. **Authentication Issues**
-   - Ensure NEXTAUTH_URL matches your deployment URL
-   - Verify NEXTAUTH_SECRET is set
+4. **Authentication Issues**
+   - Ensure NEXTAUTH_URL matches your deployment URL exactly
+   - Verify NEXTAUTH_SECRET is set and matches local development
+   - Check that JWT_SECRET is properly configured
 
-4. **Email Issues**
-   - Verify RESEND_API_KEY is valid
-   - Check EMAIL_FROM domain is verified in Resend
+5. **Email Issues**
+   - Verify RESEND_API_KEY is valid and active
+   - Check EMAIL_FROM domain is verified in Resend dashboard
+   - Ensure email domain matches verified domain
+
+### Build Error Debugging Steps
+
+1. **Check Build Logs**
+   - Go to Vercel Dashboard → Your Project → Deployments
+   - Click on the failed deployment
+   - Review "Build Logs" for specific error messages
+
+2. **Common Build Fixes**
+   ```bash
+   # If Prisma generation fails
+   npm run db:generate
+   
+   # If TypeScript errors occur
+   npm run type-check
+   
+   # If dependencies are missing
+   npm ci
+   ```
+
+3. **Environment Variable Checklist**
+   - [ ] DATABASE_URL (with ?sslmode=require)
+   - [ ] NEXTAUTH_SECRET (32+ characters)
+   - [ ] NEXTAUTH_URL (exact deployment URL)
+   - [ ] JWT_SECRET (32+ characters)
+   - [ ] NODE_ENV=production
+   - [ ] RESEND_API_KEY (if using email)
+   - [ ] EMAIL_FROM (if using email)
+
+4. **Root Directory Setting**
+   - Ensure Vercel project settings have correct root directory
+   - Should be `fingrow` not `fin-grow`
 
 ### Logs and Debugging
 
 - View deployment logs in Vercel dashboard
 - Use Vercel CLI for local debugging: `vercel logs`
 - Check function logs for API routes
+- Monitor database connections in Neon dashboard
 
 ## Environment-Specific Configurations
 

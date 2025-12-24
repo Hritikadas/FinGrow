@@ -1,32 +1,10 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "installCommand": "npm install",
   "framework": "nextjs",
+  "buildCommand": "prisma generate && next build",
+  "installCommand": "npm ci",
   "functions": {
-    "src/pages/api/**/*.ts": {
-      "maxDuration": 30
-    },
     "src/app/api/**/*.ts": {
       "maxDuration": 30
-    }
-  },
-  "env": {
-    "NEXTAUTH_URL": "@nextauth_url",
-    "DATABASE_URL": "@database_url",
-    "NEXTAUTH_SECRET": "@nextauth_secret",
-    "JWT_SECRET": "@jwt_secret",
-    "RESEND_API_KEY": "@resend_api_key",
-    "EMAIL_FROM": "@email_from"
-  },
-  "build": {
-    "env": {
-      "NEXTAUTH_URL": "@nextauth_url",
-      "DATABASE_URL": "@database_url",
-      "NEXTAUTH_SECRET": "@nextauth_secret",
-      "JWT_SECRET": "@jwt_secret",
-      "RESEND_API_KEY": "@resend_api_key",
-      "EMAIL_FROM": "@email_from"
     }
   }
 }
