@@ -16,7 +16,124 @@
     animation: gradientShift 15s ease infinite;
   }
   
-  /* Custom scrollbar */
+  /* Barba.js Transitions */
+.is-loading {
+  cursor: wait;
+}
+
+.is-loading * {
+  pointer-events: none;
+}
+
+/* Loading indicator */
+.barba-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #8b5cf6, #06b6d4, #10b981);
+  background-size: 200% 100%;
+  animation: barba-loading 1s ease-in-out infinite;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.is-loading .barba-loading {
+  opacity: 1;
+}
+
+@keyframes barba-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Barba container styles */
+[data-barba="container"] {
+  position: relative;
+  z-index: 1;
+}
+
+/* Transition overlays */
+.barba-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1e293b 0%, #7c3aed 100%);
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Page transition effects */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent flash of unstyled content during transitions */
+[data-barba="container"] {
+  min-height: 100vh;
+}
+
+/* Custom transition classes */
+.fade-transition-enter {
+  opacity: 0;
+}
+
+.fade-transition-enter-active {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.slide-transition-enter {
+  transform: translateX(100%);
+}
+
+.slide-transition-enter-active {
+  transform: translateX(0);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scale-transition-enter {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.scale-transition-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
   ::-webkit-scrollbar {
     width: 8px;
   }

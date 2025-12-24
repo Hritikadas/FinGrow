@@ -31,6 +31,19 @@ const DashboardCharts = dynamic(() => import('@/components/DashboardCharts'), {
 const USER_CACHE_KEY = 'fingrow_user_cache';
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
+function getRiskDescription(category: string): string {
+  switch (category.toLowerCase()) {
+    case 'conservative':
+      return 'Low risk tolerance with focus on capital preservation and steady returns.';
+    case 'moderate':
+      return 'Balanced approach with moderate risk for steady growth potential.';
+    case 'aggressive':
+      return 'High risk tolerance seeking maximum growth potential over long term.';
+    default:
+      return 'Risk profile not yet determined.';
+  }
+}
+
 function getCachedUser() {
   if (typeof window === 'undefined') return null;
   

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -17,6 +17,8 @@
     "db:seed": "tsx prisma/seed.ts",
     "db:migrate": "prisma migrate dev",
     "db:generate": "prisma generate",
+    "postinstall": "prisma generate",
+    "vercel-build": "prisma generate && prisma db push && next build",
     "health-check": "curl -f http://localhost:3000/api/admin/health || exit 1",
     "security-audit": "npm audit --audit-level=high",
     "performance-test": "lighthouse http://localhost:3000 --output=json --output-path=./lighthouse-report.json",
@@ -27,6 +29,7 @@
   },
   "dependencies": {
     "@barba/core": "^2.10.3",
+    "@barba/css": "^2.1.16",
     "@prisma/client": "^5.11.0",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",

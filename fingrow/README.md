@@ -1,113 +1,42 @@
-# FinGrow - AI-Powered Micro-Investment System
+# FinGrow 🚀
 
-**Automate. Invest. Grow. Repeat.**
+> **AI-Powered Micro-Investment Platform**  
+> Automate. Invest. Grow. Repeat.
 
-FinGrow is a production-ready AI-powered micro-investment platform built with Next.js 14, TypeScript, Prisma, and TailwindCSS.
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+[![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748)](https://www.prisma.io/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.0-38B2AC)](https://tailwindcss.com/)
+[![Tests](https://img.shields.io/badge/Tests-116%20Passing-green)](https://github.com/your-repo/actions)
 
-## 🎯 User Story
+FinGrow is a production-ready AI-powered micro-investment platform that helps users automate their investment journey through intelligent analysis and personalized recommendations.
 
-**Meet Riya, a 28-year-old software developer:**
+## ✨ Key Features
 
-- **Monthly Income**: ₹75,000
-- **Monthly Expenses**: ₹55,000  
-- **Available Surplus**: ₹20,000
+- 🤖 **AI-Powered Analysis** - 6 specialized AI engines for investment optimization
+- 📊 **Risk Assessment** - Personalized 5-question risk profiling system
+- 💰 **Smart Investment Rules** - Round-up, percentage, and sweep automation
+- 📈 **Investment Simulation** - Project returns with compound growth modeling
+- 🎯 **Goal-Based Planning** - Set and track financial objectives
+- 🔒 **Production Security** - JWT auth, input validation, SQL injection protection
+- 📱 **Responsive Design** - Modern UI with smooth animations
+- 🌐 **Multi-language** - English + Hindi support
 
-**FinGrow's AI Analysis:**
-1. **Liquidity Prediction**: Shows Riya can safely invest ₹12,000/month while keeping ₹8,000 as emergency buffer
-2. **Smart Rules**: Round-up investments (₹1,200/month) + 10% income rule (₹7,500/month) + end-of-month sweep (₹3,300/month)
-3. **Risk Assessment**: Moderate risk profile → Balanced Bundle (10% expected return)
-4. **Simulation**: ₹12,000/month for 5 years = ₹7.8L invested → ₹9.2L final corpus (₹1.4L returns)
-5. **AI Insights**: "You're on track to build a solid emergency fund while growing wealth. Consider increasing investment by ₹2,000 when you get your next raise."
+## � Live Demo
 
-**Result**: Riya builds wealth automatically while maintaining financial security, with AI guidance every step of the way.
+**Try the platform:** [fingrow-demo.vercel.app](https://fingrow-demo.vercel.app)
 
-## 🏗️ Architecture Overview
-
+**Demo Credentials:**
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                        FinGrow Architecture                      │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  Frontend (Next.js 14 + React + TypeScript)                    │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐              │
-│  │  Dashboard  │ │   Bundles   │ │ Simulation  │              │
-│  │    Page     │ │    Page     │ │    Page     │              │
-│  └─────────────┘ └─────────────┘ └─────────────┘              │
-│                          │                                      │
-│                          ▼                                      │
-│  API Routes (Next.js API)                                      │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐              │
-│  │    Auth     │ │ Transactions│ │ AI Analysis │              │
-│  │   Routes    │ │   Routes    │ │   Routes    │              │
-│  └─────────────┘ └─────────────┘ └─────────────┘              │
-│                          │                                      │
-│                          ▼                                      │
-│  AI Engines Layer                                              │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐              │
-│  │ Liquidity   │ │ Investment  │ │ Simulation  │              │
-│  │ Predictor   │ │ Allocator   │ │   Engine    │              │
-│  └─────────────┘ └─────────────┘ └─────────────┘              │
-│                          │                                      │
-│                          ▼                                      │
-│  Database Layer (Prisma ORM)                                   │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐              │
-│  │    Users    │ │Transactions │ │ Investment  │              │
-│  │   Table     │ │   Table     │ │  History    │              │
-│  └─────────────┘ └─────────────┘ └─────────────┘              │
-│                          │                                      │
-│                          ▼                                      │
-│  PostgreSQL Database (Neon Cloud)                              │
-│  ┌─────────────────────────────────────────────────────────┐  │
-│  │  Secure, scalable cloud database with connection       │  │
-│  │  pooling, automated backups, and global distribution   │  │
-│  └─────────────────────────────────────────────────────────┘  │
-│                                                                 │
-├─────────────────────────────────────────────────────────────────┤
-│  Supporting Services                                            │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐              │
-│  │  Logging &  │ │   Health    │ │   CI/CD     │              │
-│  │ Monitoring  │ │  Checks     │ │  Pipeline   │              │
-│  └─────────────┘ └─────────────┘ └─────────────┘              │
-└─────────────────────────────────────────────────────────────────┘
+Email: demo@fingrow.com
+Password: demo123
 ```
 
-## 🎬 Demo & User Experience
-
-### Interactive Demo
-![FinGrow Demo](./demo.gif)
-*Coming Soon: Full demo video showing signup → dashboard → simulation → AI insights*
-
-### Onboarding Experience
-FinGrow includes a comprehensive onboarding system to help new users:
-
-#### 4-Step Guided Tour
-1. **Welcome** - Introduction to FinGrow's AI-powered features
-2. **Dashboard** - Overview of investment stats, risk profile, and AI predictions
-3. **Investment Bundles** - Explanation of Safe, Balanced, and Growth options
-4. **Simulation** - How to project investment growth over time
-
-#### Onboarding Features
-- **Auto-trigger** for first-time users
-- **Skip option** for experienced users
-- **Reset functionality** in Settings page
-- **Progress tracking** with visual indicators
-- **Interactive elements** with clear call-to-actions
-
-#### User Experience Flow
-```
-New User → Signup → Dashboard → Onboarding Tour (4 steps) → Explore Features
-Returning User → Login → Dashboard → Continue where left off
-Settings → Reset Onboarding → Replay tour anytime
-```
-
-### Demo User Journey
-**Try the complete experience:**
-1. **Signup**: Create account or use demo@fingrow.com / demo123
-2. **Dashboard**: View AI insights and investment overview
-3. **Risk Assessment**: Complete 5-question questionnaire (2 minutes)
-4. **Bundles**: Explore investment options based on your risk profile
-5. **Simulation**: Project returns for different scenarios
-6. **Onboarding**: Reset tour in Settings to replay guided experience
+**Sample User Journey:**
+1. Complete risk assessment (2 minutes)
+2. View personalized dashboard with AI insights
+3. Explore investment bundles based on your risk profile
+4. Run investment simulations with different scenarios
 
 ## 🚀 Quickstart Guide
 
