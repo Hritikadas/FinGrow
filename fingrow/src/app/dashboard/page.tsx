@@ -44,6 +44,19 @@ function getRiskDescription(category: string): string {
   }
 }
 
+function getRiskLabel(category: string): 'Conservative' | 'Moderate' | 'Aggressive' {
+  switch (category.toLowerCase()) {
+    case 'conservative':
+      return 'Conservative';
+    case 'moderate':
+      return 'Moderate';
+    case 'aggressive':
+      return 'Aggressive';
+    default:
+      return 'Moderate';
+  }
+}
+
 function getCachedUser() {
   if (typeof window === 'undefined') return null;
   
@@ -113,8 +126,8 @@ export default function DashboardPage() {
           // If user has risk profile data from database, use it
           if (cachedUser.riskCategory && cachedUser.riskScore) {
             const dbRiskProfile = {
-              category: cachedUser.riskCategory,
               score: cachedUser.riskScore,
+              label: getRiskLabel(cachedUser.riskCategory),
               description: getRiskDescription(cachedUser.riskCategory),
               recommendedBundle: cachedUser.recommendedBundle || 'balanced'
             };
@@ -141,8 +154,8 @@ export default function DashboardPage() {
               // Check for database risk profile
               if (parsedUser.riskCategory && parsedUser.riskScore) {
                 const dbRiskProfile = {
-                  category: parsedUser.riskCategory,
                   score: parsedUser.riskScore,
+                  label: getRiskLabel(parsedUser.riskCategory),
                   description: getRiskDescription(parsedUser.riskCategory),
                   recommendedBundle: parsedUser.recommendedBundle || 'balanced'
                 };
